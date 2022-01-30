@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2498039891116630787}
   - component: {fileID: 1394155154}
   - component: {fileID: 1394155150}
+  - component: {fileID: 7967062285840420615}
   m_Layer: 0
   m_Name: Rhonin
   m_TagString: Player
@@ -139,4 +140,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rb: {fileID: 1394155154}
+  animator: {fileID: 2498039891116630787}
+--- !u!114 &7967062285840420615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498039891116630784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfdbfaaaec90dfc4c936f4754847f027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   animator: {fileID: 2498039891116630787}

@@ -8,7 +8,7 @@ public class SamuraiController : MonoBehaviour
     // General
     public float speed = 5f;
     public Rigidbody2D rb;
-    private bool FacingRight = true;
+    Vector3 xScale;
 
     // Animation
     float animationValue;
@@ -16,15 +16,19 @@ public class SamuraiController : MonoBehaviour
 
     Vector2 movement;
 
+    void Start()
+    {
+        xScale = transform.localScale;
+    }
+
     void Update()
     {        
         animator.SetFloat("run", animationValue);
         animValue();
         CharacterMove();
-        //CharMoveFlip();
+        CharMoveFlip();
         CharacterSpriteFlip();        
-    }
-
+    }    
 
     void FixedUpdate()
     {
@@ -33,17 +37,16 @@ public class SamuraiController : MonoBehaviour
     }
 
     void CharMoveFlip()
-    {
-        Vector3 tmpScale = transform.localScale;       
+    {           
         if ((Input.GetAxis("Horizontal")) > 0)
         {
-            tmpScale.x = 5;
+            xScale.x = 5;
         }
         if ((Input.GetAxis("Horizontal")) < 0)
         {
-            tmpScale.x = -5;
+            xScale.x = -5;
         }
-        transform.localScale = tmpScale;
+        transform.localScale = xScale;
     }
 
     void CharacterMove()
@@ -61,14 +64,14 @@ public class SamuraiController : MonoBehaviour
 
         // And compare it with the needed "middle" point then flip if it is needed
         // Here the player is the "middle"
-        if (mousePos.x < transform.position.x && FacingRight)
+        if (mousePos.x < transform.position.x)
         {
-            Flip();
+            xScale.x = -5;
         }
         else
-        if (mousePos.x > transform.position.x && !FacingRight)
+        if (mousePos.x > transform.position.x)
         {
-            Flip();
+            xScale.x = 5;
         }
     }
 
@@ -82,14 +85,5 @@ public class SamuraiController : MonoBehaviour
         {
             animationValue = Mathf.Abs(movement.y);
         }
-    }
-
-    void Flip()
-    {
-        //I  think in the C# you can't do transform.localScale.x = - transform.localScale.x;, also do next:
-        Vector3 tmpScale = transform.localScale;
-        tmpScale.x = -tmpScale.x;
-        transform.localScale = tmpScale;
-        FacingRight = !FacingRight; 
     }
 }

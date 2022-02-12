@@ -14,7 +14,8 @@ public class SamuraiController : MonoBehaviour
     float animationValue;
     public Animator animator;
     public float animTime;
-    float available = 2;
+    float available = 1;
+    //float doubleattack = 1;
 
     Vector2 movement;
 
@@ -30,7 +31,8 @@ public class SamuraiController : MonoBehaviour
         CharacterMove();
         CharMoveFlip();
         CharacterSpriteFlip();
-        Attack();
+        //Attack();
+        NewAttack();
     }    
 
     void FixedUpdate()
@@ -97,16 +99,30 @@ public class SamuraiController : MonoBehaviour
             animTime = 1.0f;
         }
 
-        //if (Input.GetMouseButtonDown(1))
-       // {
-          //  animTime = 2.5f;
-            //animator.SetBool("double", true);
-       // }
 
-        if (animTime > -0.1f)
+        if (animTime > -0.3f)
         {            
             animator.SetFloat("attack", animTime);
-            animTime -= Time.deltaTime;            
+            animTime -= Time.deltaTime;
+            available += Time.deltaTime;
         }
+    }
+
+    void NewAttack()
+    {        
+
+        if (Input.GetMouseButton(0) && available >= 0.3f)
+        {
+            available = 0f;
+            animTime = 0.95f;
+        }
+
+        if (animTime > -0.1f)
+        {
+            animator.SetFloat("attack", animTime);
+            animTime -= Time.deltaTime;
+        }
+
+        available += Time.deltaTime;
     }
 }

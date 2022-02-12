@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class ExitGame : MonoBehaviour
 {      
-
     public void Exit()
     {
-        Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();        
     }
 }

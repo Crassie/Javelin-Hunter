@@ -9,9 +9,7 @@ public class spawner : MonoBehaviour
     // Summon a prefab inserted in public
     void Start()
     {
-        GameObject instance = Instantiate(Prefab, transform.position, transform.rotation);
+        Instantiate(Prefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
-
-
 }
